@@ -1,0 +1,52 @@
+{% extends 'menu/base.html' %}
+
+
+{% block title %}
+    Register!
+{% endblock title %}
+    
+
+{% block body %}
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="my-5 mx-3">
+                    <h1 class="text-uppercase text-center">Registeration form!</h1>
+
+                    <form action="{% url 'addUser' %}" method="POST" class="px-5 py-5" id="regForm">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="fname">First Name:</label>
+                            <input type="text" name="fname" class="form-control" placeholder="Enter first name" autocomplete="off" id="fname" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name:</label>
+                            <input type="text" name="lname" class="form-control" placeholder="Enter last name" autocomplete="off" id="lname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user">Username:</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter Username" autocomplete="off" id="user" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Email Address:</label>
+                            <input type="email" name="email" class="form-control" placeholder="Enter Email Address" autocomplete="off" id="mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mpass">Password:</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password" autocomplete="off" id="mpass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpass">Confirm Password:</label>
+                            <input type="password" name="cpassword" class="form-control" placeholder="Retype Password" autocomplete="off" id="cpass" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary" id="regBtn">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

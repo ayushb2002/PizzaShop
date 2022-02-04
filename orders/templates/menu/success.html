@@ -1,0 +1,22 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+    Success!
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="m-5">
+                    <h1>Welcome {{username}}</h1>
+                    <h4 class="my-2">Current balance is {{credit.credit}}</h4>
+                    <h5 class="my-2">To add balance to your account, contact admin at the shop and get the balance updated.</h5>
+                    <h5 class="my-2">Maximum balance that can be added is $999.99</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+    

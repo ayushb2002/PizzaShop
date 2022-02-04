@@ -1,0 +1,60 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+    Success!
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="m-5">
+                    <h1>Welcome {{username}}</h1>
+                </div>
+            </div>
+            <div class="col-12">
+                
+                <div class="m-5 px-5">
+                    <h2>Pending Orders: </h2>
+                    <ol>
+                    {% for order in orders %}
+                        
+                        {% if order.progress == "Payment Recieved!" %}
+                            
+                            <form action="{% url 'updateStatus' %}" method="POST">
+                                <li>{{order}}</li>
+                                {% csrf_token %}
+                                <input type="hidden" name="orderNumber" value="{{order.id}}">
+                                <label class="radio-inline">
+                                    <input type="radio" name="updStat" value="none"> Pending
+                                  </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="updStat" value="success"> Delivered
+                                  </label>
+                                <button type="submit" class="btn btn-outline-dark">Update</button>
+                            </form>
+                        {% endif %}
+
+                    {% endfor %}
+                </ol>
+            </div>
+            </div>
+            <div class="col-12">
+                <div class="m-5 px-5">
+                    <h2>Completed Orders: </h2>
+                    <ol>
+                    {% for order in orders %}
+                        
+                        {% if order.progress == "Delivered" %}
+                            <li>{{order}}</li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+    

@@ -1,0 +1,165 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+    Order Food!
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-uppercase m-3">Order Food!</h1>
+            </div>
+            <div class="col-12">
+                <div class="m-5">
+                    
+                  
+                        
+                        {% if data == 'step1' %}
+                        <form method="POST" action="{% url 'disOpt' %}">
+                            {% csrf_token %}
+                        <div class="form-group">
+                            <label for="category">Select Category</label>
+                            <select name="category" class="form-control">
+                                <option value="regularPizza" selected>Regular Pizza</option>
+                                <option value="sicilianPizza">Sicilian Pizza</option>
+                                <option value="Subs">Subs</option>
+                                <option value="Pasta">Pasta</option>
+                                <option value="Salads">Salad</option>
+                                <option value="dinnerPlatters">Dinner Platter</option>
+                            </select>
+                        </div>    
+                        <button type="submit" class="btn btn-outline-success">Show Options</button>
+                    </form>   
+                        {% elif data == 'step2' %}
+                        <form method="POST" action="{% url 'completeOrder' %}">
+                            {% csrf_token %}
+                        <div class="form-group">
+                            <select name="menuOpt" class="form-control">
+                                <option value="none" selected disabled>Select Item -- </option>
+                                {% for option in options %}
+                                <option value="{{option.items}}">{{option.items}} - 
+                                    
+                                    {% if option.small %}
+                                    ${{option.small}} | ${{option.large}}
+                                    {% else %}
+                                    ${{option.rate}}    
+                                    {% endif %}
+                                        
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        {% if category == 'Pasta' or category == 'Salads' %}
+                        <div class="form-group">
+                            <select name="size" class="form-control">
+                                <option value="medium" selected>Medium</option>
+                            </select>
+                        </div>    
+                        {% else %}
+                        <div class="form-group">
+                            <select name="size" class="form-control">
+                                <option value="small" selected>Small</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+
+                        {% endif %}
+                            
+                        <input type="hidden" name="category" value="{{category}}">
+                        <button type="submit" class="btn btn-outline-success">Complete Order</button>
+                    </form>   
+
+                        {% elif data == 'step3' %}
+                        <form action="{% url 'placePizzaOrder' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <select name="menuOpt" class="form-control" id="t1">
+                                    <option value="none" selected disabled>Select Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="selection" value="{{selection}}">
+                            <input type="hidden" name="category" value="{{category}}">
+                            <input type="hidden" name="topp" value="{{top}}">
+
+                            {% if top == 2 %}
+                            <div class="form-group">
+                                <select name="menuOpt2" class="form-control" id="t2">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endif %}
+                                
+                            {% if top == 3 %}
+                            <div class="form-group">
+                                <select name="menuOpt2" class="form-control" id="t2">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="menuOpt3" class="form-control" id="t3">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endif %}
+                            {% if top == 5 %}
+                            <div class="form-group">
+                                <select name="menuOpt2" class="form-control" id="t2">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="menuOpt3" class="form-control" id="t3">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="menuOpt4" class="form-control" id="t4">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="menuOpt5" class="form-control" id="t5">
+                                    <option value="none" selected disabled>Select Another Topping -- </option>
+                                    {% for t in toppings %}
+                                    <option value="{{t.topp}}">{{t.topp}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endif %}
+
+                            <button type="submit" class="btn btn-outline-success">Place Order</button>
+
+                        </form>
+                        {% endif %}
+    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+    

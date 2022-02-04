@@ -1,0 +1,331 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+Pinochio's Pizza and Subs
+{% endblock title %}
+
+
+{% block body %}
+<section>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="alert alert-success mt-5">
+                    <h1 class="text-center text-uppercase">Menu</h1>
+                </div>
+            </div>
+
+            <div class="col-12 pt-2" id="regPiz">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Regular Pizza!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if regularPizza %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Small</th>
+                                <th>Large</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for regPiz in regularPizza %}
+
+                            <tr>
+                                <td>{{regPiz.items}}</td>
+                                <td>${{regPiz.small}}</td>
+                                <td>${{regPiz.large}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+
+            </div>
+            <div class="col-12 pt-2" id="sicPiz">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Sicilian Pizza!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if sicilianPizza %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Small</th>
+                                <th>Large</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for regPiz in sicilianPizza %}
+
+                            <tr>
+                                <td>{{regPiz.items}}</td>
+                                <td>${{regPiz.small}}</td>
+                                <td>${{regPiz.large}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+
+            </div>
+
+            <div class="col-12 pt-2" id="topp">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Toppings!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if toppings %}
+
+                    <table class="table table-hover table-warning text-center">
+                        <thead>
+                            <tr>
+                                <th>Toppings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for topp in toppings %}
+
+                            <tr>
+                                <td>{{topp.topp}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="col-12 pt-2" id="subs">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Subs!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if subs %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Small</th>
+                                <th>Large</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for sub in subs %}
+
+                            <tr>
+                                <td>{{sub.items}}</td>
+                                {% if sub.small == -1.00 %}
+                                <td></td>
+                                {% elif sub.small == 0.50 %}
+                                <td>+ ${{sub.small}}</td>
+                                {% else %}
+                                <td>${{sub.small}}</td>
+                                {% endif %}
+
+                                {% if sub.large == 0.50 %}
+                                <td>+ ${{sub.large}}</td>
+                                {% else %}
+                                <td>${{sub.large}}</td>
+                                {% endif %}
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="col-12 pt-2" id="pasta">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Pasta!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if pasta %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for p in pasta %}
+
+                            <tr>
+                                <td>{{p.items}}</td>
+                                <td>${{p.rate}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+
+            </div>
+
+            <div class="col-12 pt-2" id="salad">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Salad!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if salads %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for salad in salads %}
+
+                            <tr>
+                                <td>{{salad.items}}</td>
+                                <td>${{salad.rate}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+
+            </div>
+
+            <div class="col-12 pt-2" id="dinnp">
+
+                <div class="my-5 mx-2 text-center">
+                    <h1>Dinner Platters!</h1>
+                </div>
+
+                {% if data %}
+
+                <div class="my-3 mx-2">
+
+                    {% if dinnerPlatters %}
+
+                    <table class="table table-hover table-warning">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Small</th>
+                                <th>Large</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dp in dinnerPlatters %}
+
+                            <tr>
+                                <td>{{dp.items}}</td>
+                                <td>${{dp.small}}</td>
+                                <td>${{dp.large}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% endif %}
+
+
+                </div>
+                {% endif %}
+
+
+            </div>
+
+            <div class="col-12 my-3"></div>
+
+        </div>
+    </div>
+</section>
+{% endblock body %}

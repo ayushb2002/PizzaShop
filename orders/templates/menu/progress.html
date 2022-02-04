@@ -1,0 +1,44 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+    Track Order!
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="m-5">
+                    <h1 class="text-uppercase text-center my-2">Welcome {{username}}</h1>
+                </div>
+            </div>
+            <div class="col-12">
+
+                    <div class="m-5">
+                        <h2 class="text-uppercase text-center my-5">Track Order - </h2>
+                        
+                        {% for order in orders %}
+                        
+                        {% if order.email == mail %}
+                        <div class="row">
+            
+                                <ul>
+                                    <li>Category - {{order.category}}</li>
+                                    <li>Selection - {{order.selection}} </li>
+                                    <li>Size - {{order.size}}</li>
+                                    <li>Cost - {{order.cost}}</li>
+                                    <li>Status - {{order.progress}}</li>
+                                </ul>                  
+                                
+                        </div>
+                        <hr style="color: black;background-color: black;">    
+                        {% endif %}
+       
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+    

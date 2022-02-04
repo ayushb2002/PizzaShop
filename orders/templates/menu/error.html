@@ -1,0 +1,23 @@
+{% extends 'menu/base.html' %}
+
+
+{% block title %}
+    Error!
+{% endblock title %}
+    
+
+{% block body %}
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mx-5 my-5">
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

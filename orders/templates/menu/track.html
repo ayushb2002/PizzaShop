@@ -1,0 +1,67 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}
+    Track Order!
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="m-5">
+                    <h1 class="text-uppercase text-center my-2">Welcome {{username}}</h1>
+                </div>
+            </div>
+            <div class="col-12">
+
+                    <div class="m-5">
+                        <h2 class="text-uppercase text-center my-5">Order Passbook - </h2>
+                        
+                        {% for order in orders %}
+                        
+                        {% if order.email == mail %}
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <ul>
+                                    <li>Category - {{order.category}}</li>
+                                    <li>Selection - {{order.selection}} </li>
+                                    <li>Size - {{order.size}}</li>
+                                    <li>Cost - {{order.cost}}</li>
+                                    <li>Status - {{order.progress}}</li>
+                                </ul>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <form action="{% url 'delOrder' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="orderId" value="{{order.id}}">
+                                    <h1 class="text-center py-5"><button id="delBtn"><i class="fa fa-trash"></i></button></h1>
+                                </form>
+                                </div>
+                        </div>
+                        <hr style="color: black;background-color: black;">    
+                        {% endif %}
+       
+                        {% endfor %}
+                    </div>
+                    <div class="p-5">
+                        <span class="float-left">Total - ${{totalCost}}</span>
+                        <form action="{% url 'checkOut' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="totalCost" value="{{totalCost}}" id="totalCost">
+                        <button class="btn btn-outline-primary float-right" id="checkOut">Checkout!</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var cost = document.querySelector('#totalCost').value;
+    if(cost==0)
+        document.querySelector('#checkOut').disabled = true;
+    else
+        document.querySelector('#checkOut').disabled = false;
+    </script>
+{% endblock body %}
+    
