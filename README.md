@@ -15,5 +15,3 @@ Personal Touch:
 
 Conclusion:
     This is a basic web application implementing all the required features as stated in the project guidlines.
-
--Project by Ayush Bansal (Age - 17)
